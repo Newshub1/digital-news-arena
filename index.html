@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Welcome to our PR campaign website. Learn about our mission, explore resources, and connect with us.">
+    <title>PR Campaign</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background: #f4f4f9;
+            color: #333;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: #0056b3;
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .hero .cta-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: white;
+            color: #0056b3;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .hero .cta-btn:hover {
+            background: #e0e0e0;
+            color: #003a80;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 50px 20px;
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .section p {
+            text-align: center;
+            font-size: 1rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        /* Resources Section */
+        .resources input {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 20px;
+            display: block;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .resources ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .resources ul li {
+            background: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: box-shadow 0.3s;
+        }
+
+        .resources ul li:hover {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Contact Section */
+        .contact form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact form input,
+        .contact form textarea,
+        .contact form button {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .contact form button {
+            background: #0056b3;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .contact form button:hover {
+            background: #003a80;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .resources ul li {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <h1>Welcome to Our PR Campaign</h1>
+            <p>Driving change for a better future.</p>
+            <a href="#about" class="cta-btn">Learn More</a>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <h2>About the Campaign</h2>
+            <p>This campaign focuses on creating awareness and fostering action towards important societal goals.</p>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="section resources">
+        <div class="container">
+            <h2>Resources</h2>
+            <input type="text" id="search" placeholder="Search resources..." oninput="filterResources()" aria-label="Search Resources">
+            <ul id="resources-list">
+                <li>Guide to Effective PR Strategies</li>
+                <li>Campaign Toolkit</li>
+                <li>Event Planning Checklist</li>
+                <li>Social Media Best Practices</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <form id="contact-form" aria-label="Contact Form">
+                <input type="text" id="name" placeholder="Your Name" required aria-label="Your Name">
+                <input type="email" id="email" placeholder="Your Email" required aria-label="Your Email">
+                <textarea id="message" placeholder="Your Message" required aria-label="Your Message"></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        // Filter resources based on search input
+        function filterResources() {
+            const searchInput = document.getElementById('search').value.toLowerCase();
+            const resources = document.getElementById('resources-list').getElementsByTagName('li');
+
+            for (let resource of resources) {
+                const text = resource.textContent.toLowerCase();
+                resource.style.display = text.includes(searchInput) ? 'block' : 'none';
+            }
+        }
+
+        // Handle form submission
+        document.getElementById('contact-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            alert(`Thank you, ${name}! Your message has been sent.`);
+            this.reset();
+        });
+    </script>
+</body>
+</html>
